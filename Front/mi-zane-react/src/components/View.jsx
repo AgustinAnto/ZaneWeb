@@ -6,6 +6,12 @@ import { useAuth } from '../components/AuthContext';
 const View = () => {
     const { isSignedIn, setIsSignedIn } = useAuth();
     const [isSignedUp, setIsSignedUp] = useState(false);
+    const [isVisible, setIsVisible] = useState(false); //dropdown menu
+
+    const toggleDropdown = () => {
+        setIsVisible(!isVisible);
+    };
+
     const handleSignUpClick = () => {
         setIsSignedUp(true);
     };
@@ -27,15 +33,16 @@ const View = () => {
                 {!isSignedIn && <button className="nav-button" onClick={handleSignInClick}>Sign In</button>}
                 {!isSignedIn && <button className="nav-button" onClick={handleSignUpClick}>Sign Up</button>}
                 {isSignedIn && <button className="nav-button" onClick={handleLogOutClick}>Log Out</button>}
-                <div className="hamburger-menu">
+                <div className="hamburger-menu" onClick={toggleDropdown}>
                     <div className="bar"></div>
                     <div className="bar"></div>
                     <div className="bar"></div>
                 </div>
 
-                <div className="dropdown-menu hidden">
-                    <a href="#contact">Contact</a>
+
+                <div className={`dropdown-menu ${isVisible ? '' : 'hidden'}`}>
                     <a href="#product">Product</a>
+                    <a href="#contact">Contact</a>
                     <a href="#social-media">Social Media</a>
                 </div>
             </div>

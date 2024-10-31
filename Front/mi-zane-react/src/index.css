@@ -197,3 +197,9 @@ h1 {
   width: 300px;
   text-align: center;
 }
+.review{
+  background-color: white;
+  padding: 20px;
+  border-radius: 30px;
+  margin: 10px;
+}
