@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useAuth } from '../components/AuthContext';
+
 
 const SignUp = ({ onClose }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const { isSignedIn, setIsSignedIn } = useAuth();
+   
 
     const handleSignOn = async () =>{
         try{
@@ -18,7 +18,7 @@ const SignUp = ({ onClose }) => {
             console.log("user created: ", response.data);
             alert("Account created successfully");
             localStorage.setItem('Email', email);
-            setIsSignedIn(true);
+    
         }
         catch(error){
             console.log(error);

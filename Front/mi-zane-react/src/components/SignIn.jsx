@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useAuth } from '../components/AuthContext';
 
 const SignIn = ({onClose}) =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isEmail, setIsEmail] = useState("");
     const [isPassword, setIsPassword] = useState("");
-    const { isSignedIn, setIsSignedIn } = useAuth();
+
     
     const handleSignOn = async() =>{
         
@@ -20,12 +19,11 @@ const SignIn = ({onClose}) =>{
             setIsPassword(response.data.password);
             setIsEmail(response.data.email);
             alert("logged in successfully");
-            setIsSignedIn(true);
         }
         catch(error){
          console.log(error);   
          alert("Problems encountered while logging in");
-         setIsSignedIn(false);
+
         }
     }
     const handleSubmit = (e) => {

@@ -1,15 +1,12 @@
 // src/components/SubmitReviewComponent.jsx
-import { useAuth } from '../components/AuthContext';
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const SubmitReviewComponent = () => {
   const [reviewText, setReviewText] = useState("");
-  const { isSignedIn } = useAuth();
 
 
   const handleReview = async() => {
-    if(isSignedIn){
       try {
         var Email = localStorage.getItem('Email');
         const response = await axios.post('http://localhost:8000/PostReviews', {
@@ -23,10 +20,7 @@ const SubmitReviewComponent = () => {
       console.error('Error:' + error);
       alert("Problems encountered while posting the review");
     }
-    }
-    else{
-      alert("You must be logged in to write a review")
-    }
+   
 }
     
 const handleSubmit = (e) => {
