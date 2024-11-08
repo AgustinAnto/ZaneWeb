@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const SignIn = ({onClose}) =>{
+const SignIn = ({ onClose, currentUser, onLogin }) =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isEmail, setIsEmail] = useState("");

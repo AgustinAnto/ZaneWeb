@@ -2,24 +2,33 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SubmitReviewComponent = () => {
+const SubmitReviewComponent = ({ currentUser }) => {
   const [reviewText, setReviewText] = useState("");
 
 
   const handleReview = async() => {
-      try {
-        var Email = localStorage.getItem('Email');
-        const response = await axios.post('http://localhost:8000/PostReviews', {
-          "review": reviewText,
-          "Email": Email
-        });
-        console.log("review created" + response.data)
-        alert("Review created successfully");
-        window.location.reload(); // Recarga toda la página
-    } catch(error) {
-      console.error('Error:' + error);
-      alert("Problems encountered while posting the review");
-    }
+   if(currentUser){
+    try {
+      var Email = localStorage.getItem('Email');
+      const response = await axios.post('http://localhost:8000/PostReviews', {
+        "review": reviewText,
+        "Email": Email
+      });
+      console.log("review created" + response.data)
+      alert("Review created successfully");
+      window.location.reload(); // Recarga toda la página
+  } catch(error) {
+    console.error('Error:' + error);
+    alert("Problems encountered while posting the review");
+  }
+   } else{
+    alert("currentUser = false");
+   }
+      
+    
+
+    
+      
    
 }
     

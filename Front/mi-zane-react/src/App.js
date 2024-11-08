@@ -5,8 +5,10 @@ import UserCounter from './components/UserCounter';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Navbar from './components/Navbar'
+
+
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [isVisible, setIsVisible] = useState(false); //dropdown menu
@@ -14,9 +16,9 @@ const App = () => {
   const toggleDropdown = () => {
         setIsVisible(!isVisible);
   };
-  const handleLogin = (user) => {
-    setCurrentUser(user);
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  const handleLogin = (username) => {
+    setCurrentUser(username);
+    localStorage.setItem('currentUser', JSON.stringify(username));
     setShowLogin(false);
 };
 
@@ -27,6 +29,7 @@ const handleLogout = () => {
 
   return (
       <div>
+
                 <Navbar 
                     currentUser={currentUser} 
                     setShowLogin={setShowLogin} 
@@ -76,9 +79,9 @@ const handleLogout = () => {
             </div>
             {showSignup && <SignUp onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
             {showLogin && <SignIn onClose={() => setShowSignup(false)} onLogin={handleLogin}/>}
-        <UserCounter />
-        <SubmitReviewComponent />
-        <ReviewsComponent />
+             <UserCounter />
+                <SubmitReviewComponent  currentUser={currentUser}/>
+                <ReviewsComponent />
       </div>
   );
 };
