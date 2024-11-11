@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 
 
-const SignUp = ({ onClose, currentUser, onLogin }) => {
+const SignUp = ({ onClose, setCurrentUser, onLogin }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const SignUp = ({ onClose, currentUser, onLogin }) => {
             console.log("user created: ", response.data);
             alert("Account created successfully");
             localStorage.setItem('Email', email);
-    
+            
         }
         catch(error){
             console.log(error);
@@ -31,6 +31,7 @@ const SignUp = ({ onClose, currentUser, onLogin }) => {
         e.preventDefault(); 
         handleSignOn();
         onClose();
+        setCurrentUser(true)
     };
 
     return (

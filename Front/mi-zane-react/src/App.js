@@ -23,7 +23,7 @@ const App = () => {
 };
 
 const handleLogout = () => {
-  setCurrentUser(null);
+  setCurrentUser(false);
   localStorage.removeItem('currentUser');
 };
 
@@ -35,6 +35,7 @@ const handleLogout = () => {
                     setShowLogin={setShowLogin} 
                     setShowSignup={setShowSignup} 
                     onLogout={handleLogout} 
+                    setCurrentUser={setCurrentUser}
                 />
         <div className="top-navigation">
                 <div className="hamburger-menu" onClick={toggleDropdown}>
@@ -77,11 +78,11 @@ const handleLogout = () => {
                 <div className="section-title">Follow Us</div>
                 <p>Social media platforms.</p>
             </div>
-            {showSignup && <SignUp onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
-            {showLogin && <SignIn onClose={() => setShowSignup(false)} onLogin={handleLogin}/>}
-             <UserCounter />
-                <SubmitReviewComponent  currentUser={currentUser}/>
-                <ReviewsComponent />
+            {showSignup && <SignUp onClose={() => setShowSignup(false)} onLogin={handleLogin} setCurrentUser={setCurrentUser}/>}
+            {showLogin && <SignIn onClose={() => setShowLogin(false)} onLogin={handleLogin}  setCurrentUser={setCurrentUser}/>}
+            <UserCounter />
+            <SubmitReviewComponent currentUser={currentUser}/>    
+            <ReviewsComponent />
       </div>
   );
 };

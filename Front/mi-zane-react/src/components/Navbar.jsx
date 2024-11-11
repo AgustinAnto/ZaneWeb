@@ -10,19 +10,18 @@ const Navbar = ({  currentUser, setShowLogin, setShowSignup, onLogout }) => {
     }
     return (
         <div>
-            {(() => {
-                if (currentUser) {
-                    return <button className="nav-button" onClick={onLogout}>Logout</button>;
-                } else {
-                    return (
-                        <>
-                            <button className="nav-button" onClick={() => setShowLogin(true)}>Login</button>
-                            <button className="nav-button" onClick={() => setShowSignup(true)}>Sign Up</button>
-                        </>
-                    );
-                }
-            })()}
+            {currentUser ? 
+                    <button className="nav-button" onClick={onLogout} >Logout</button> 
+                    
+                :
+                    <>
+                        <button className="nav-button" onClick={() => setShowLogin(true)}>Login</button>
+                        <button className="nav-button" onClick={() => setShowSignup(true)}>Sign Up</button>
+                    </>
+            }
+            
         </div>
+       
     );
 }
 export default Navbar;

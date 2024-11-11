@@ -29,7 +29,7 @@ async function PostReviews(data) {
   try {
     const querySnapshot = await db.collection('Users').where('Email', '==', data.Email).get();
     if (querySnapshot.empty) {
-      return { statusCode: 404, message: 'Email not found' };
+      return { statusCode: 400, message: 'Email not found' };
     }
     querySnapshot.forEach(async (doc) => {
       await doc.ref.update(data);

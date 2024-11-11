@@ -24,12 +24,6 @@ const SubmitReviewComponent = ({ currentUser }) => {
    } else{
     alert("currentUser = false");
    }
-      
-    
-
-    
-      
-   
 }
     
 const handleSubmit = (e) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const SignIn = ({ onClose, currentUser, onLogin }) =>{
+const SignIn = ({ onClose, setCurrentUser, onLogin }) =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isEmail, setIsEmail] = useState("");
@@ -19,6 +19,7 @@ const SignIn = ({ onClose, currentUser, onLogin }) =>{
             setIsPassword(response.data.password);
             setIsEmail(response.data.email);
             alert("logged in successfully");
+            localStorage.setItem('Email', email);
         }
         catch(error){
          console.log(error);   
@@ -30,6 +31,7 @@ const SignIn = ({ onClose, currentUser, onLogin }) =>{
         e.preventDefault(); 
         handleSignOn();
         onClose();
+        setCurrentUser(true)
     };
 
     return (
