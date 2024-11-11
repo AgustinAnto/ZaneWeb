@@ -19,10 +19,10 @@ const SubmitReviewComponent = ({ currentUser }) => {
       window.location.reload(); // Recarga toda la página
   } catch(error) {
     console.error('Error:' + error);
-    alert("Problems encountered while posting the review");
+    alert("Problems encountered while posting the review.");
   }
    } else{
-    alert("currentUser = false");
+    alert("You need to log in to post a review.");
    }
 }
     
